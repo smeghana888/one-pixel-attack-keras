@@ -202,7 +202,7 @@ def differential_evolution(func, bounds, args=(), strategy='best1bin',
     .. [2] http://www1.icsi.berkeley.edu/~storn/code.html
     .. [3] http://en.wikipedia.org/wiki/Differential_evolution
     """
-
+    print("before solver")
     solver = DifferentialEvolutionSolver(func, bounds, args=args,
                                          strategy=strategy, maxiter=maxiter,
                                          popsize=popsize, tol=tol,
@@ -356,6 +356,8 @@ class DifferentialEvolutionSolver(object):
 
         self.callback = callback
         self.polish = polish
+        
+        print("polish")
 
         # relative and absolute tolerances for convergence
         self.tol, self.atol = tol, atol
