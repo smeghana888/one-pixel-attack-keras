@@ -398,7 +398,7 @@ class DifferentialEvolutionSolver(object):
         if maxfun is None:  # the default used to be None
             maxfun = np.inf
         self.maxfun = maxfun
-
+        print("maxfun")
         # population is scaled to between [0, 1].
         # We have to scale between parameter <-> population
         # save these arguments for _scale_parameter and
@@ -420,6 +420,7 @@ class DifferentialEvolutionSolver(object):
                                  self.parameter_count)
 
         self._nfev = 0
+        print("0")
         if isinstance(init, string_types):
             if init == 'latinhypercube':
                 self.init_population_lhs()
@@ -429,7 +430,7 @@ class DifferentialEvolutionSolver(object):
                 raise ValueError(self.__init_error_msg)
         else:
             self.init_population_array(init)
-
+        print("disp")
         self.disp = disp
 
     def init_population_lhs(self):
@@ -439,7 +440,7 @@ class DifferentialEvolutionSolver(object):
         sampled over its range.
         """
         rng = self.random_number_generator
-
+        print("init population")
         # Each parameter range needs to be sampled uniformly. The scaled
         # parameter range ([0, 1)) needs to be split into
         # `self.num_population_members` segments, each of which has the following
