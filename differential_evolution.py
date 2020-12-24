@@ -576,6 +576,7 @@ class DifferentialEvolutionSolver(object):
                 break
 
             if self.disp:
+                print("in self.disp")
                 print("differential_evolution step %d: f(x)= %g"
                       % (nit,
                          self.population_energies[0]))
@@ -671,6 +672,7 @@ class DifferentialEvolutionSolver(object):
         self.population_energies[0] = lowest_energy
 
         self.population[[0, minval], :] = self.population[[minval, 0], :]
+        print("after population")
 
     def __iter__(self):
         return self
@@ -688,6 +690,7 @@ class DifferentialEvolutionSolver(object):
         # the population may have just been initialized (all entries are
         # np.inf). If it has you have to calculate the initial energies
         if np.all(np.isinf(self.population_energies)):
+            print("in next population")
             self._calculate_population_energies()
 
         if self.dither is not None:
@@ -717,7 +720,7 @@ class DifferentialEvolutionSolver(object):
                 if energy < self.population_energies[0]:
                     self.population_energies[0] = energy
                     self.population[0] = trial
-
+        print("end next")
         # for candidate in range(self.num_population_members):
         #     if self._nfev > self.maxfun:
         #         raise StopIteration
