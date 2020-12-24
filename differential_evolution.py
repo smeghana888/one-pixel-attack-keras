@@ -724,6 +724,7 @@ class DifferentialEvolutionSolver(object):
             print(energy, "energy")
             print(trial, "trial")
             print(candidate, "candidate")
+            print(self.population_energies[candidate], "pop_candidate")
             if energy < self.population_energies[candidate]:
                 self.population[candidate] = trial
                 self.population_energies[candidate] = energy
