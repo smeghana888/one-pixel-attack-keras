@@ -650,6 +650,8 @@ class DifferentialEvolutionSolver(object):
         print("before scale parameters")
         parameters = np.array([self._scale_parameters(c) for c in candidates]) # TODO: can be vectorized
         print("after scaling")
+        print(parameters)
+        print(self.func)
         energies = self.func(parameters, *self.args)
         print("energies", energies)
         self.population_energies = energies
