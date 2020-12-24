@@ -647,11 +647,13 @@ class DifferentialEvolutionSolver(object):
         ##############
         itersize = max(0, min(len(self.population), self.maxfun - self._nfev + 1))
         candidates = self.population[:itersize]
+        print("before scale parameters")
         parameters = np.array([self._scale_parameters(c) for c in candidates]) # TODO: can be vectorized
+        print("after scaling")
         energies = self.func(parameters, *self.args)
         self.population_energies = energies
         self._nfev += itersize
-
+        print("energies", energies)
         # for index, candidate in enumerate(self.population):
         #     if self._nfev > self.maxfun:
         #         break
@@ -776,6 +778,7 @@ class DifferentialEvolutionSolver(object):
         """
         scale from a number between 0 and 1 to parameters.
         """
+        print("in scale")
         return self.__scale_arg1 + (trial - 0.5) * self.__scale_arg2
 
     def _unscale_parameters(self, parameters):
