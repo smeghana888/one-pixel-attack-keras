@@ -721,6 +721,9 @@ class DifferentialEvolutionSolver(object):
         for candidate,(energy,trial) in enumerate(zip(energies, trials)):
             # if the energy of the trial candidate is lower than the
             # original population member then replace it
+            print(energy, "energy")
+            print(trial, "trial")
+            print(candidate, "candidate")
             if energy < self.population_energies[candidate]:
                 self.population[candidate] = trial
                 self.population_energies[candidate] = energy
