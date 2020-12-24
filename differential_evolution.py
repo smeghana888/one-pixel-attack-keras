@@ -569,8 +569,10 @@ class DifferentialEvolutionSolver(object):
         for nit in xrange(1, self.maxiter + 1):
             # evolve the population by a generation
             try:
+                print("in try")
                 next(self)
             except StopIteration:
+                print("in exception")
                 warning_flag = True
                 status_message = _status_message['maxfev']
                 break
@@ -689,6 +691,7 @@ class DifferentialEvolutionSolver(object):
         """
         # the population may have just been initialized (all entries are
         # np.inf). If it has you have to calculate the initial energies
+        print("in next fn")
         if np.all(np.isinf(self.population_energies)):
             print("in next population")
             self._calculate_population_energies()
