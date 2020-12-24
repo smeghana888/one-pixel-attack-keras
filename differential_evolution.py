@@ -641,7 +641,7 @@ class DifferentialEvolutionSolver(object):
         Puts the best member in first place. Useful if the population has just
         been initialised.
         """
-
+        print("in calculate population energies")
         ##############
         ## CHANGES: self.func operates on the entire parameters array
         ##############
@@ -667,12 +667,13 @@ class DifferentialEvolutionSolver(object):
         
 
         minval = np.argmin(self.population_energies)
-
+        print("put the lowest energy into the best solution position")
         # put the lowest energy into the best solution position.
         lowest_energy = self.population_energies[minval]
+        print("lowest energy", lowest_energy)
         self.population_energies[minval] = self.population_energies[0]
         self.population_energies[0] = lowest_energy
-
+        print("before population minval")
         self.population[[0, minval], :] = self.population[[minval, 0], :]
         print("after population")
 
