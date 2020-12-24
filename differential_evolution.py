@@ -556,7 +556,7 @@ class DifferentialEvolutionSolver(object):
         """
         nit, warning_flag = 0, False
         status_message = _status_message['success']
-
+        print("success")
         # The population may have just been initialized (all entries are
         # np.inf). If it has you have to calculate the initial energies.
         # Although this is also done in the evolve generator it's possible
@@ -564,7 +564,7 @@ class DifferentialEvolutionSolver(object):
         # initial energies to be calculated (the following loop isn't run).
         if np.all(np.isinf(self.population_energies)):
             self._calculate_population_energies()
-
+            print("in if cond")
         # do the optimisation.
         for nit in xrange(1, self.maxiter + 1):
             # evolve the population by a generation
@@ -601,6 +601,7 @@ class DifferentialEvolutionSolver(object):
         else:
             status_message = _status_message['maxiter']
             warning_flag = True
+            print("in else")
 
         DE_result = OptimizeResult(
             x=self.x,
@@ -609,7 +610,8 @@ class DifferentialEvolutionSolver(object):
             nit=nit,
             message=status_message,
             success=(warning_flag is not True))
-
+        
+        print("after DE result optimize")
         if self.polish:
             result = minimize(self.func,
                               np.copy(DE_result.x),
@@ -627,7 +629,7 @@ class DifferentialEvolutionSolver(object):
                 # to keep internal state consistent
                 self.population_energies[0] = result.fun
                 self.population[0] = self._unscale_parameters(result.x)
-
+        print("before return")
         return DE_result
 
     def _calculate_population_energies(self):
